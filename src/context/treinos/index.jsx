@@ -1,5 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { api } from "../../services/api"
+import { getExPeito, getExCostas, getExOmbros, getExPernas, 
+  getExPanturrilhas, getExGluteo, getExBiceps, getExAbdominal, 
+  getExTriceps
+ } from "../../services/exercicios";
 
 const TreinoContext = createContext();
 
@@ -17,10 +20,11 @@ export const TreinoProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
+   
     const reachExPeito = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/expeito")
+        const data = await getExPeito();
         setExPeito(data); 
         setLoading(false)
 
@@ -30,8 +34,9 @@ export const TreinoProvider = ({ children }) => {
   }
 
   const reachExCostas = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/excostas")
+        const data = await getExCostas();
         setExCostas(data); 
         setLoading(false)
 
@@ -41,8 +46,9 @@ export const TreinoProvider = ({ children }) => {
   }
 
   const reachExOmbros = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/exombros")
+        const data = await getExOmbros()
         setExOmbros(data); 
         setLoading(false)
 
@@ -52,8 +58,9 @@ export const TreinoProvider = ({ children }) => {
   }
 
   const reachExPernas = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/expernas")
+        const data = await getExPernas();
         setExPernas(data); 
         setLoading(false)
 
@@ -63,8 +70,9 @@ export const TreinoProvider = ({ children }) => {
   }
 
   const reachExPanturrilhas= async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/expanturrilhas")
+        const data = await getExPanturrilhas();
         setExPanturrilhas(data); 
         setLoading(false)
 
@@ -75,8 +83,9 @@ export const TreinoProvider = ({ children }) => {
 
 
   const reachExGluteo = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/exgluteo")
+        const data = await getExGluteo();
         setExGluteo(data); 
         setLoading(false)
 
@@ -86,8 +95,9 @@ export const TreinoProvider = ({ children }) => {
   }
 
   const reachExBiceps = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/exbiceps")
+        const data = await getExBiceps();
         setExBiceps(data); 
         setLoading(false)
 
@@ -97,8 +107,9 @@ export const TreinoProvider = ({ children }) => {
   }
 
   const reachExAbdominal = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/exabdominal")
+        const data = await getExAbdominal();
         setExAbdominal(data); 
         setLoading(false)
 
@@ -108,8 +119,9 @@ export const TreinoProvider = ({ children }) => {
   }
 
   const reachExTriceps = async () => {
+    setLoading(true)
     try {
-        const { data } = await api.get("/extriceps")
+        const data = await getExTriceps();
         setExTriceps(data); 
         setLoading(false)
 
@@ -132,7 +144,10 @@ export const TreinoProvider = ({ children }) => {
   }, [])
 
   return (
-    <TreinoContext.Provider value={{ loading, exPeito, exCostas, exOmbros, exPernas, exPanturrilhas, exTriceps, exGluteo, exBiceps, exAbdominal }}>
+    <TreinoContext.Provider value={{ 
+      loading, exPeito, exCostas, exOmbros, exPernas, 
+      exPanturrilhas, exTriceps, exGluteo, exBiceps, exAbdominal 
+      }}>
       {children}
     </TreinoContext.Provider>
   )
